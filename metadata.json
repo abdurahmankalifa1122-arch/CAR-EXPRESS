@@ -1,0 +1,6 @@
+{
+  "name": "CAR EXPRESS",
+  "description": "Luxury automotive importer and curated vehicle sales showroom in Ethiopia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
