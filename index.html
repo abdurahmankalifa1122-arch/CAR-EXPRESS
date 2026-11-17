@@ -17,6 +17,22 @@
   <body style="background-color:#07090C;color:#F4F4F5;" class="bg-[#07090C] text-[#F4F4F5] antialiased selection:bg-[#C9A96E]/30 selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script data-dev-only>
+      setTimeout(function () {
+        if (!window.__CAR_EXPRESS_MOUNTED__ && document.querySelector('script[src="/src/main.tsx"]')) {
+          var root = document.getElementById('root');
+          if (root && !root.hasChildNodes()) {
+            root.innerHTML =
+              '<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;font-family:sans-serif;text-align:center;background:#07090C;color:#F4F4F5;">' +
+              '<div style="max-width:520px;border:1px solid rgba(201,169,110,0.4);padding:32px;border-radius:6px;background:#0E1117;">' +
+              '<p style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C9A96E;margin:0 0 12px;">CAR EXPRESS · GitHub Pages Setup</p>' +
+              '<h1 style="font-size:22px;margin:0 0 12px;color:#fff;">Switch Pages Source to GitHub Actions</h1>' +
+              '<p style="font-size:14px;line-height:1.6;color:#B8C0CC;margin:0;">GitHub Pages is currently serving the unbuilt source branch (<code>main / root</code>) instead of the compiled <code>dist</code> build. In your repository, go to <strong>Settings &rarr; Pages &rarr; Source</strong>, select <strong>GitHub Actions</strong>, and re-run the workflow.</p>' +
+              '</div></div>';
+          }
+        }
+      }, 1500);
+    </script>
   </body>
 </html>
 

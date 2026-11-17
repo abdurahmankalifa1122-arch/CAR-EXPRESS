@@ -4,14 +4,31 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(({ command }) => {
+  if (command === 'build') {
+    process.env.NODE_ENV = 'production';
+  }
+
+  const rawBase = process.env.VITE_BASE_PATH?.trim();
   const base =
     command === 'build'
-      ? process.env.VITE_BASE_PATH || './'
+      ? rawBase
+        ? rawBase.replace(/\/+$/, '') + '/'
+        : './'
       : '/';
 
   return {
     base,
-    plugins: [react(), tailwindcss()],
+    plugins: [
+      react(),
+      tailwindcss(),
+      {
+        name: 'strip-dev-only-html',
+        apply: 'build',
+        transformIndexHtml(html) {
+          return html.replace(/<script data-dev-only>[\s\S]*?<\/script>/g, '');
+        },
+      },
+    ],
     resolve: {
       alias: {
         '@': path.resolve(import.meta.dirname, '.'),
