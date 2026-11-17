@@ -24,9 +24,9 @@ export function HeroSection() {
       {/* Editorial Foreground */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-16 pt-12 sm:px-6 md:py-24 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 1, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-2xl"
         >
           <p className="mb-4 text-xs font-medium tracking-[0.22em] uppercase text-[#C9A96E]">
