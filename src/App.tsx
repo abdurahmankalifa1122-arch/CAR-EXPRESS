@@ -21,7 +21,19 @@ function loadStoredVehicles(): VehicleListing[] {
     const raw = localStorage.getItem(STORAGE_VEHICLES_KEY);
     if (!raw) return DEFAULT_VEHICLES;
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : DEFAULT_VEHICLES;
+    if (
+      Array.isArray(parsed) &&
+      parsed.every(
+        (item) =>
+          item &&
+          typeof item === 'object' &&
+          typeof item.id === 'string' &&
+          typeof item.brand === 'string'
+      )
+    ) {
+      return parsed;
+    }
+    return DEFAULT_VEHICLES;
   } catch {
     return DEFAULT_VEHICLES;
   }
@@ -31,7 +43,11 @@ function loadStoredContact(): ContactConfig {
   try {
     const raw = localStorage.getItem(STORAGE_CONTACT_KEY);
     if (!raw) return DEFAULT_CONTACT_CONFIG;
-    return { ...DEFAULT_CONTACT_CONFIG, ...JSON.parse(raw) };
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+      return { ...DEFAULT_CONTACT_CONFIG, ...parsed };
+    }
+    return DEFAULT_CONTACT_CONFIG;
   } catch {
     return DEFAULT_CONTACT_CONFIG;
   }
